@@ -28,7 +28,7 @@ Optional features:
 From the website root:
 
 ```bash
-git submodule add https://github.com/de-souza/hugo-flex.git themes/hugo-flex
+git submodule add https://github.com/karpfen/hugo-flex.git themes/hugo-flex
 ```
 
 The theme must be set in the website config:

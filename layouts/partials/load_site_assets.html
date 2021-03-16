@@ -11,6 +11,16 @@
   {{ $site_css = $css_list | resources.Concat "css/base.css" }}
 {{ end }}
 
+{{ if (eq .Page.Title "About") }}
+  {{ resources.Get "about.css" | fingerprint | .Page.Scratch.SetInMap "css" "publications" }}
+{{ end }}
+{{ if (eq .Page.Title "Publications") }}
+  {{ resources.Get "publications.css" | fingerprint | .Page.Scratch.SetInMap "css" "publications" }}
+{{ end }}
+{{ if (eq .Page.Title "Contact") }}
+  {{ resources.Get "contact.css" | fingerprint | .Page.Scratch.SetInMap "css" "publications" }}
+{{ end }}
+
 {{ minify $site_css | fingerprint | .Page.Scratch.SetInMap "css" "base" }}
 
 {{ with site.Params.js }}

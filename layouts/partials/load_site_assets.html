@@ -1,3 +1,4 @@
+{{ printf "%#v" . }}
 {{ $base_css := resources.Get "css/base.tpl.css" | resources.ExecuteAsTemplate "css/base.css" . }}
 
 {{ $site_css := $base_css }}
@@ -14,11 +15,14 @@
 {{ if (eq .Page.Title "About") }}
   {{ resources.Get "about.css" | fingerprint | .Page.Scratch.SetInMap "css" "publications" }}
 {{ end }}
-{{ if (eq .Page.Title "Publications") }}
+{{ if (eq .File.Path "/publications.md") }}
   {{ resources.Get "publications.css" | fingerprint | .Page.Scratch.SetInMap "css" "publications" }}
 {{ end }}
-{{ if (eq .Page.Title "Contact") }}
+{{ if (eq .File.Path "/contact.md") }}
   {{ resources.Get "contact.css" | fingerprint | .Page.Scratch.SetInMap "css" "publications" }}
+{{ end }}
+{{ if (eq .File.Path "/CV.md") }}
+  {{ resources.Get "cv.css" | fingerprint | .Page.Scratch.SetInMap "css" "publications" }}
 {{ end }}
 
 {{ minify $site_css | fingerprint | .Page.Scratch.SetInMap "css" "base" }}
